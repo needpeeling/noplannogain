@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "yeah-buddy-lightweight": {
+    "norepnogain": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/yeah-buddy-lightweight",
+            "outputPath": "dist/norepnogain",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "yeah-buddy-lightweight:build:production"
+              "browserTarget": "norepnogain:build:production"
             },
             "development": {
-              "browserTarget": "yeah-buddy-lightweight:build:development"
+              "browserTarget": "norepnogain:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "yeah-buddy-lightweight:build"
+            "browserTarget": "norepnogain:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "yeah-buddy-lightweight"
+  "defaultProject": "norepnogain"
 }
