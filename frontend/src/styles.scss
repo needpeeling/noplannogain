@@ -1,0 +1,39 @@
+@import './app/template/variables.scss';
+
+
+html {
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: linear-gradient(270deg, black 0%, $background-color 100%);
+    color: $font-color;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+
+html, body { height: 100%; }
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    &-track {
+        background: #f1f1f1;
+    }
+    &-thumb {
+        background: #888;
+        border-radius: 5px;
+        &:hover {
+            background: #555;
+        }
+    }
+}
+
+
