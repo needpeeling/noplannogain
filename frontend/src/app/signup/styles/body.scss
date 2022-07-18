@@ -1,0 +1,97 @@
+@import './main.scss';
+
+#container_body {
+    height: 100vh;
+}
+
+#container_register {
+    float: right;
+    width: 50%;
+    height: 100%;
+    @include flex(column, center);
+    align-items: center;
+
+
+    @include responsive-screen(small) {
+        float: none;
+        width: 100%;
+    }
+
+    #card_form {
+        border-radius: 10px;
+        padding: 2rem;
+        height: 550px;
+        box-shadow: $box-shadow-medium;
+        background-color: lighten($color: $background-color, $amount: 5%);
+        @include flex(column, space-between);
+        position: relative;
+
+        #btn_home {
+            position: absolute;
+            top: 18px;
+            left: 15px;
+            background-color: $background-color;
+            border: 1px solid $orange-color;
+        }
+
+        h1 {
+            font-size: $font-size-subheader;
+            text-align: center;
+            font-family: $font-family-comic;
+        }
+
+        p {
+            font-family: $font-family-comic;
+            font-size: $font-size-body;
+            color: $orange-color;
+        }
+
+        input {
+            color: $font-color;
+            font-size: $font-size-body;
+            padding: $padding-input;
+            width: 300px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background-color: $background-color;
+
+            &:focus {
+                border: 2px solid $font-color;
+            }
+        }
+
+        #btn_submit {
+            border: none;
+            border-radius: 10px;
+            font-size: $font-size-subheader;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: .2s;
+            color: $font-color;
+            background-color: $orange-color;
+
+            &:hover {
+                background-color: darken($orange-color, 10%);
+            }
+        }
+    }
+
+}
+
+#container_bg {
+    float: left;
+    width: 50%;
+    height: 100%;
+
+    @include flex(column, center);
+    align-items: center;
+
+
+    @include responsive-screen(small) {
+        display: none;
+    }
+}
+
+
+
