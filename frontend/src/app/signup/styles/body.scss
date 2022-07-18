@@ -2,15 +2,17 @@
 
 #container_body {
     height: 100vh;
+
+    @include flex(row, center);
+    align-items: center;
+    gap: 10vw;
 }
 
 #container_register {
-    float: right;
-    width: 50%;
+
     height: 100%;
     @include flex(column, center);
     align-items: center;
-
 
     @include responsive-screen(small) {
         float: none;
@@ -26,10 +28,11 @@
         @include flex(column, space-between);
         position: relative;
 
+
         #btn_home {
             position: absolute;
-            top: 18px;
-            left: 15px;
+            top: 40px;
+            left: 25px;
             background-color: $background-color;
             border: 1px solid $orange-color;
         }
@@ -61,6 +64,8 @@
             }
         }
 
+
+
         #btn_submit {
             border: none;
             border-radius: 10px;
@@ -71,26 +76,31 @@
             color: $font-color;
             background-color: $orange-color;
 
-            &:hover {
+            &:disabled {
+                background-color: grey;
+            }
+
+            &:hover:enabled {
                 background-color: darken($orange-color, 10%);
             }
         }
+
+        .error-message {
+            margin-top: -10px;
+            color: red;
+        }
+
+        ::-ms-reveal { filter: invert(100%); }
     }
 
 }
 
 #container_bg {
-    float: left;
-    width: 50%;
-    height: 100%;
-
-    @include flex(column, center);
-    align-items: center;
-
-
-    @include responsive-screen(small) {
-        display: none;
+    img {
+        height: 550px;
     }
+
+    @include responsive-screen(small) { display: none; }
 }
 
 

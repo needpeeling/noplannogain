@@ -6,28 +6,39 @@
     </div>
 
     <div id="container_register">
-        <div id="card_form">
-            <a href="home">
-                <button id="btn_home" mat-fab color="primary" aria-label="Home"><mat-icon>home</mat-icon></button>
-            </a>    
-            <h1>Please fill the form</h1>
-            <div class="div-input">
-                <p>Email</p>
-                <input type="mail">
+
+        <form [formGroup]="signupForm">
+            <div id="card_form">
+                <a href="home">
+                    <button type="button" id="btn_home" mat-fab color="primary" aria-label="Home"><mat-icon>home</mat-icon></button>
+                </a>
+                <h1>Please fill the form</h1>
+                <div class="div-input">
+                    <p>* Email</p>
+                    <div *ngIf="mail && mail.invalid && mail.touched" 
+                        class="error-message">Please enter an Email</div>
+                    <input type="mail" formControlName="mail">
+                </div>
+                <div class="div-input">
+                    <p>* User Name</p>
+                    <div *ngIf="name && name.invalid && name.touched" 
+                        class="error-message">Please enter an User Name</div>
+                    <input type="text" formControlName="name">
+                </div>
+                <div class="div-input">
+                    <p>* Password</p>
+                    <div *ngIf="password && password.invalid && password.touched" 
+                        class="error-message">Please enter a Password  (at least 6 chars)</div>
+                    <input type="password" formControlName="password">         
+                </div>
+                <div class="div-input">
+                    <p>* Confirm Password</p>
+                    <div *ngIf="password_confirm && password_confirm.invalid && password_confirm.touched" 
+                        class="error-message">Please enter a Password  (at least 6 chars)</div>
+                    <input type="password" formControlName="password_confirm">              
+                </div>
+                <button (click)="submitSignUpForm()" [disabled]="signupForm.invalid" id="btn_submit">Sign Up</button>
             </div>
-            <div class="div-input">
-                <p>User Name</p>
-                <input type="text">                
-            </div>
-            <div class="div-input">
-                <p>Password</p>
-                <input type="passwort">              
-            </div>
-            <div class="div-input">
-                <p>Confirm Password</p>
-                <input type="passwort">              
-            </div>
-            <button id="btn_submit">Sign Up</button>
-        </div>  
+        </form>
     </div>    
 </div>
