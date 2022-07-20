@@ -15,26 +15,34 @@
                 <h1>Please fill the form</h1>
                 <div class="div-input">
                     <p>* Email</p>
-                    <div *ngIf="mail && mail.invalid && mail.touched" 
-                        class="error-message">Please enter an Email</div>
+                    <div *ngIf="form['mail'].getError('required')!=null && form['mail'].touched" 
+                         class="error-message">Please enter an Email</div>    
+                    <div *ngIf="form['mail'].getError('email')!=null" 
+                         class="error-message">Please enter a valid email address</div>    
                     <input type="mail" formControlName="mail">
                 </div>
                 <div class="div-input">
                     <p>* User Name</p>
-                    <div *ngIf="name && name.invalid && name.touched" 
-                        class="error-message">Please enter an User Name</div>
+                    <div *ngIf="form['name'].getError('required')!=null && form['name'].touched"
+                         class="error-message">Please enter a user name</div>
+                    <div *ngIf="form['name'].getError('minlength')!=null" 
+                         class="error-message">User name should have at least 4 chars</div> 
                     <input type="text" formControlName="name">
                 </div>
                 <div class="div-input">
                     <p>* Password</p>
-                    <div *ngIf="password && password.invalid && password.touched" 
-                        class="error-message">Please enter a Password  (at least 6 chars)</div>
+                    <div *ngIf="form['password'].getError('required')!=null && form['password'].touched" 
+                         class="error-message">Please enter a password</div>
+                    <div *ngIf="form['password'].getError('minlength')!=null" 
+                         class="error-message">Password should be at least 6 chars</div> 
                     <input type="password" formControlName="password">         
                 </div>
                 <div class="div-input">
                     <p>* Confirm Password</p>
-                    <div *ngIf="password_confirm && password_confirm.invalid && password_confirm.touched" 
-                        class="error-message">Please enter a Password  (at least 6 chars)</div>
+                    <div *ngIf="form['password_confirm'].getError('required')!=null && form['password_confirm'].touched" 
+                         class="error-message">Please confirm password</div>
+                    <div *ngIf="form['password_confirm'].getError('matchPassword')!=null" 
+                         class="error-message">Password mismatched</div>
                     <input type="password" formControlName="password_confirm">              
                 </div>
                 <button (click)="submitSignUpForm()" [disabled]="signupForm.invalid" id="btn_submit">Sign Up</button>
