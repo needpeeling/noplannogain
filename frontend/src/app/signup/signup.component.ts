@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { DialogComponent } from '../dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-signup',
@@ -22,13 +26,34 @@ export class SignupComponent implements OnInit {
   }
   )
 
-  constructor(private  fb: FormBuilder) { }
+  constructor(private  fb: FormBuilder, private userservice: UserService, private dialog: MatDialog,) { }
 
   ngOnInit(): void {
   }
 
   submitSignUpForm() {
-    console.log(this.signupForm.value);
+    this.userservice.signUp(this.signupForm.value).subscribe((res)=>{
+      if(res.err) {
+        let error_message:string;
+        console.log(res.err);
+        switch(res.err.errno) {
+          case 1062:
+            let key_words = res.err.sqlMessage.match(/(['"]).*?\1/g);
+            let entity = key_words[1].replaceAll("'", "");
+            let duplicate = key_words[0];
+            error_message = `${duplicate} already exists! Please choose another ${entity}!`;
+            break;
+          default:
+            error_message = res.err.sqlMessage;
+            break;
+        }
+        this.dialog.open(DialogComponent, {data: {message: error_message}});
+      }
+      // else {
+      //   let MID = res.data.insertId ? res.data.insertId : false;
+      //   this.router.navigate(['/artist'], { queryParams: { name: this.musicianForm.value.name} });
+      // }
+    });  
   }
 
 /**

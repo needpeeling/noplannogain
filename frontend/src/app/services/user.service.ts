@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,14 +9,15 @@ export class UserService {
 
   constructor(private _http:HttpClient) { }
 
-  url_user = 'http://localhost:3000/user';
+  URL_USER = 'http://localhost:3000/user';
 
 // #####################################################################################################################
-// ####                            Handling GET Requests                                                           ####
+// ####                            Handling POST Requests                                                           ####
 // #####################################################################################################################
 
-  // getMusician(name:any):Observable<any> {
-  //   return this._http.get(`${this.url_musician}/${name}`);
-  // }
+  signUp(data:any):Observable<any> {
+    console.log(data);
+    return this._http.post(this.URL_USER, data);
+  }
 
 }

@@ -46,7 +46,7 @@
         p {
             font-family: $font-family-comic;
             font-size: $font-size-body;
-            color: $orange-color;
+            color: $green-color;
         }
 
         input {
@@ -63,8 +63,6 @@
                 border: 2px solid $font-color;
             }
         }
-
-
 
         #btn_submit {
             border: none;
@@ -87,12 +85,11 @@
 
         .error-message {
             margin-top: -10px;
-            color: red;
+            color: $orange-color;
         }
 
         ::-ms-reveal { filter: invert(100%); }
     }
-
 }
 
 #container_bg {

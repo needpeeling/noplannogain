@@ -12,13 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './signup/signup.component';
 
 import { UserService } from './services/user.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
