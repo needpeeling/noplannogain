@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,16 +27,23 @@ export class SignupComponent implements OnInit {
   }
   )
 
-  constructor(private  fb: FormBuilder, private userservice: UserService, private dialog: MatDialog,) { }
+  constructor(
+    private  fb: FormBuilder, private userservice: UserService, private dialog: MatDialog,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
 
+  /**
+  * The function takes the form data and sends it to the server. If the server returns an error, the
+  * error message is displayed in a dialog box. If the server returns a success message, the user is
+  * redirected to his profile
+  */
   submitSignUpForm() {
     this.userservice.signUp(this.signupForm.value).subscribe((res)=>{
       if(res.err) {
         let error_message:string;
-        console.log(res.err);
         switch(res.err.errno) {
           case 1062:
             let key_words = res.err.sqlMessage.match(/(['"]).*?\1/g);
@@ -49,20 +57,20 @@ export class SignupComponent implements OnInit {
         }
         this.dialog.open(DialogComponent, {data: {message: error_message}});
       }
-      // else {
-      //   let MID = res.data.insertId ? res.data.insertId : false;
-      //   this.router.navigate(['/artist'], { queryParams: { name: this.musicianForm.value.name} });
-      // }
+      else {
+        this.userservice.UID = res.data.insertId;
+        this.router.navigate(['/', this.signupForm.value.name], { queryParams: { name: this.signupForm.value.name} });
+      }
     });  
   }
 
-/**
- * If the password and password_confirm fields don't match, set the password_confirm field's errors to
- * { matchPassword: true }
- * @param {any} password - The name of the first password field.
- * @param {any} password_confirm - The name of the form control that you want to validate.
- * @returns A function that takes a FormGroup as an argument.
- */
+  /**
+  * If the password and password_confirm fields don't match, set the password_confirm field's errors to
+  * { matchPassword: true }
+  * @param {any} password - The name of the first password field.
+  * @param {any} password_confirm - The name of the form control that you want to validate.
+  * @returns A function that takes a FormGroup as an argument.
+  */
   matchPassword(password:any, password_confirm:any) {
     return (fg: FormGroup) => {
       const passwordControl = fg.controls[password];

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,9 @@ import { SignupComponent } from './signup/signup.component';
 
 import { UserService } from './services/user.service';
 import { DialogComponent } from './dialog/dialog.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NavComponent } from './nav/nav.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -20,7 +24,10 @@ import { DialogComponent } from './dialog/dialog.component';
     AppComponent,
     HomeComponent,
     SignupComponent,
-    DialogComponent
+    DialogComponent,
+    ProfileComponent,
+    NavComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,7 @@ import { DialogComponent } from './dialog/dialog.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     UserService
